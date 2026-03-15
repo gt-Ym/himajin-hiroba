@@ -16,6 +16,17 @@
   max-width: 440px;
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+  .card {
+    padding: 28px 20px;
+  }
+}
+
 .heading {
   font-size: 26px;
   font-weight: 700;
@@ -38,11 +49,130 @@
   margin-bottom: 10px;
 }
 
+/* 選択中アイコン表示行 */
+.iconRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.selectedIcon {
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+}
+
+.changeIconBtn {
+  height: 40px;
+  padding: 0 18px;
+  background: #f3f4f6;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.changeIconBtn:hover {
+  background: #e5e7eb;
+}
+
+/* モーダル */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+}
+
+.modalTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* カルーセル */
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.carouselBtn {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: #f3f4f6;
+  border: 1.5px solid #d1d5db;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
+  transition: background 0.15s;
+}
+
+.carouselBtn:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+
+.carouselBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 .iconGrid {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 8px;
+}
+
+/* ページドット */
+.pageDots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #d1d5db;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dotActive {
+  background: #1d4ed8;
 }
 
 .iconBtn {
@@ -66,6 +196,45 @@
   border-color: #1d4ed8;
   background: #eff6ff;
   box-shadow: 0 0 0 2px #bfdbfe;
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+}
+
+.cancelBtn {
+  flex: 1;
+  height: 44px;
+  background: #f3f4f6;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cancelBtn:hover {
+  background: #e5e7eb;
+}
+
+.confirmBtn {
+  flex: 1;
+  height: 44px;
+  background: #1d4ed8;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.confirmBtn:hover {
+  background: #1e40af;
 }
 
 .inputRow {
@@ -134,4 +303,24 @@
   background: #e5e7eb;
   color: #9ca3af;
   cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .modal {
+    padding: 16px;
+    max-height: 85dvh;
+    border-radius: 12px;
+  }
+  .iconGrid {
+    gap: 6px;
+  }
+  .iconBtn {
+    padding: 6px;
+    border-radius: 8px;
+  }
+  .carouselBtn {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
 }

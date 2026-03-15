@@ -1,0 +1,84 @@
+.page {
+  min-height: calc(100vh - 80px);
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.card {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* タブ */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab {
+  flex: 1;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.tab:hover {
+  color: #374151;
+}
+
+.tabActive {
+  color: #1d4ed8;
+  border-bottom-color: #1d4ed8;
+  font-weight: 600;
+}
+
+.tabRoom1 {
+  background: #ffffff;
+}
+
+.tabRoom2 {
+  background: #f0fdf4;
+}
+
+.tabRoom3 {
+  background: #faf5ff;
+}
+
+/* コンテンツ */
+.content {
+  height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  transition: background 0.3s;
+}
+
+.contentRoom2 {
+  background: #f0fdf4;
+}
+
+.contentRoom3 {
+  background: #faf5ff;
+}
+
+.wip {
+  font-size: 20px;
+  color: #9ca3af;
+  font-weight: 500;
+}

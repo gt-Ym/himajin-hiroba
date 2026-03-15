@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useUser } from "@/contexts/UserContext";
 
-export type Participant = { username: string; iconId: string; uuid: string };
+export type Participant = { username: string; iconId: string; uuid: string; plazaName?: string };
 export type Notification = { id: number; message: string };
 
 export const ANIMATION_DURATION = 10000;
@@ -91,6 +91,7 @@ export function usePresence(plazaName: string) {
         const seen = new Set<string>();
         const next = Object.values(state)
           .flatMap((presences) => presences)
+          .filter((p) => p.plazaName === plazaName)
           .filter((p) => {
             if (seen.has(p.uuid)) return false;
             seen.add(p.uuid);
@@ -104,7 +105,7 @@ export function usePresence(plazaName: string) {
         if (!hasTracked) return;
 
         (newPresences as unknown as Participant[])
-          .filter((p) => p.uuid !== user.uuid)
+          .filter((p) => p.uuid !== user.uuid && p.plazaName === plazaName)
           .forEach((p) => {
             // 広場移動中のユーザー → syncより先にjoinが来てもprevParticipantsRefに残っているため最初にチェック
             const destPlazaName = navigatingUsersRef.current.get(p.uuid);
@@ -146,7 +147,7 @@ export function usePresence(plazaName: string) {
         );
 
         (leftPresences as unknown as Participant[])
-          .filter((p) => p.uuid !== user.uuid)
+          .filter((p) => p.uuid !== user.uuid && p.plazaName === plazaName)
           .forEach((p) => {
             // 同UUIDが別コネクションでまだ存在 → 旧コネクションの遅延leave → 通知なし
             if (currentUuids.has(p.uuid)) return;
@@ -168,6 +169,7 @@ export function usePresence(plazaName: string) {
             username: user.name,
             iconId: user.iconId,
             uuid: user.uuid,
+            plazaName,
           });
           hasTracked = true;
         }
