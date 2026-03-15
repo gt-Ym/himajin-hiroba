@@ -155,7 +155,7 @@ export default function ChatPage() {
             <button
               key={room.id}
               onClick={() => setActiveRoom(room.id)}
-              className={`${styles.tab} ${activeRoom === room.id ? styles.tabActive : ""}`}
+              className={`${styles.tab} ${room.id === 1 ? styles.tabRoom1 : room.id === 2 ? styles.tabRoom2 : styles.tabRoom3} ${activeRoom === room.id ? styles.tabActive : ""}`}
             >
               {room.label}
             </button>
@@ -227,6 +227,7 @@ export default function ChatPage() {
         </form>
 
       </div>
+      <p className={styles.notice}>※ 送信内容は1時間後に自動で削除されます</p>
     </div>
   );
 }

@@ -60,7 +60,7 @@ export default function DrawPage() {
             <button
               key={r.id}
               onClick={() => setActiveRoom(r.id)}
-              className={`${styles.tab} ${activeRoom === r.id ? styles.tabActive : ""}`}
+              className={`${styles.tab} ${r.id === 1 ? styles.tabRoom1 : r.id === 2 ? styles.tabRoom2 : styles.tabRoom3} ${activeRoom === r.id ? styles.tabActive : ""}`}
             >
               {r.label}
             </button>
@@ -112,6 +112,7 @@ export default function DrawPage() {
         </div>
 
       </div>
+      <p className={styles.notice}>※ 1時間に1回、お絵描きの内容がすべて削除されます</p>
     </div>
   );
 }

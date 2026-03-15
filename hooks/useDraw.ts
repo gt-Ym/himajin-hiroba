@@ -64,18 +64,29 @@ export function useDraw(activeRoom: number) {
     ctx.drawImage(ensureOffscreen(roomId), 0, 0);
   }, [ensureOffscreen]);
 
-  // 初回ロード: 全部屋の既存ストロークをDBから取得
+  // 初回ロード: 全部屋の既存ストロークをDBから取得（ページネーションで全件取得）
   useEffect(() => {
     if (initialized.current) return;
     initialized.current = true;
-    (async () => {
-      for (const roomId of [1, 2, 3]) {
+    const PAGE_SIZE = 1000;
+    const fetchAllForRoom = async (roomId: number) => {
+      let from = 0;
+      while (true) {
         const { data } = await supabase
           .from("draw_strokes")
           .select("room_id,x0,y0,x1,y1,color,line_width")
           .eq("room_id", roomId)
-          .order("id", { ascending: true });
-        if (data) data.forEach((s) => paintStroke(s as DrawStroke));
+          .order("id", { ascending: true })
+          .range(from, from + PAGE_SIZE - 1);
+        if (!data || data.length === 0) break;
+        data.forEach((s) => paintStroke(s as DrawStroke));
+        if (data.length < PAGE_SIZE) break;
+        from += PAGE_SIZE;
+      }
+    };
+    (async () => {
+      for (const roomId of [1, 2, 3]) {
+        await fetchAllForRoom(roomId);
       }
       flushToCanvas(activeRoomRef.current);
     })();
