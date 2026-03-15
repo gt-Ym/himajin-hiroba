@@ -12,3 +12,13 @@ export interface ChatMessage {
   content: string;
   created_at: string;
 }
+
+export interface DrawStroke {
+  room_id: number;
+  x0: number;
+  y0: number;
+  x1: number;
+  y1: number;
+  color: string;
+  line_width: number;
+}

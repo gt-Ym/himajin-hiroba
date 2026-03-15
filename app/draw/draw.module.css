@@ -18,14 +18,111 @@
   flex-direction: column;
 }
 
-.content {
-  height: 460px;
+/* タブ */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tab {
+  flex: 1;
+  padding: 14px 0;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.tab:hover {
+  color: #374151;
+}
+
+.tabActive {
+  color: #1d4ed8;
+  border-bottom-color: #1d4ed8;
+  font-weight: 600;
+}
+
+/* キャンバス */
+.canvasWrapper {
+  background: #f3f4f6;
+  border-bottom: 1px solid #e5e7eb;
+  line-height: 0;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+/* ツールバー */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  border-top: 1px solid #e5e7eb;
+  background: #fafafa;
+  flex-wrap: wrap;
+}
+
+.colors {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.colorBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.1s, border-color 0.1s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.colorBtn:hover {
+  transform: scale(1.15);
+}
+
+.colorBtnActive {
+  border-color: #1d4ed8;
+  transform: scale(1.2);
+}
+
+.widths {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.widthBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background: #f3f4f6;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: border-color 0.1s;
 }
 
-.placeholder {
-  font-size: 14px;
-  color: #9ca3af;
+.widthBtn:hover {
+  border-color: #9ca3af;
+}
+
+.widthBtnActive {
+  border-color: #1d4ed8;
+  background: #eff6ff;
 }
