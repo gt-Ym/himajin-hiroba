@@ -9,9 +9,10 @@ interface Props {
   title: string;
   onCallEveryone?: () => void;
   isCallOnCooldown?: boolean;
+  onNavigate?: (destPlazaName: string) => void;
 }
 
-export default function PlazaHeader({ title, onCallEveryone, isCallOnCooldown }: Props) {
+export default function PlazaHeader({ title, onCallEveryone, isCallOnCooldown, onNavigate }: Props) {
   const [showRoomList, setShowRoomList] = useState(false);
 
   return (
@@ -39,7 +40,7 @@ export default function PlazaHeader({ title, onCallEveryone, isCallOnCooldown }:
                 key={p.href}
                 href={p.href}
                 className={styles.modalItem}
-                onClick={() => setShowRoomList(false)}
+                onClick={() => { onNavigate?.(p.label); setShowRoomList(false); }}
               >
                 {p.emoji} {p.label}
               </Link>

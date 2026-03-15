@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useUser } from "@/contexts/UserContext";
-import UserSetup from "@/components/UserSetup";
 import { supabase, type ChatMessage } from "@/lib/supabase";
 import { getIconPath } from "@/lib/icons";
 import { usePresence } from "@/hooks/usePresence";
@@ -24,9 +24,16 @@ type RoomId = typeof ROOMS[number]["id"];
 
 const initialCache: Record<RoomId, ChatMessage[]> = { 1: [], 2: [], 3: [] };
 
-export default function Chat() {
-  const { user, isLoaded, saveUser } = useUser();
-  const { participants, notifications, callEveryone, isCallOnCooldown } = usePresence();
+export default function ChatPage() {
+  const router = useRouter();
+  const { user, isLoaded } = useUser();
+  const { participants, notifications, callEveryone, isCallOnCooldown, notifyNavigation } = usePresence("雑談広場");
+
+  useEffect(() => {
+    if (isLoaded && !user) {
+      router.replace("/");
+    }
+  }, [isLoaded, user, router]);
   const [activeRoom, setActiveRoom] = useState<RoomId>(1);
   const [allMessages, setAllMessages] = useState<Record<RoomId, ChatMessage[]>>(initialCache);
   const [loading, setLoading] = useState(true);
@@ -127,8 +134,7 @@ export default function Chat() {
     setIsSending(false);
   };
 
-  if (!isLoaded) return null;
-  if (!user) return <UserSetup onEnter={(name, iconId) => saveUser(name, iconId)} />;
+  if (!isLoaded || !user) return null;
 
   const formatTime = (iso: string) => {
     const d = new Date(iso);
@@ -139,7 +145,7 @@ export default function Chat() {
     <div className={styles.page}>
       <div className={styles.card}>
 
-        <PlazaHeader title="雑談広場" onCallEveryone={() => callEveryone("雑談広場")} isCallOnCooldown={isCallOnCooldown} />
+        <PlazaHeader title="雑談広場" onCallEveryone={() => callEveryone("雑談広場")} isCallOnCooldown={isCallOnCooldown} onNavigate={notifyNavigation} />
         <NotificationBar notifications={notifications} />
         <ParticipantBar participants={participants} />
 
