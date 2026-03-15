@@ -1,0 +1,25 @@
+@keyframes tickerSlide {
+  from { left: 100%; }
+  to   { left: -100%; }
+}
+
+.bar {
+  position: relative;
+  overflow: hidden;
+  height: 32px;
+  background: #eff6ff;
+  border-bottom: 1px solid #bfdbfe;
+}
+
+.item {
+  position: absolute;
+  white-space: nowrap;
+  top: 0;
+  height: 32px;
+  line-height: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1d4ed8;
+  animation: tickerSlide linear forwards;
+  animation-fill-mode: both;
+}

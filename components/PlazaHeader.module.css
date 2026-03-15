@@ -1,0 +1,92 @@
+.heading {
+  padding: 12px 20px 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.callBtn {
+  position: absolute;
+  left: 16px;
+  font-size: 12px;
+  padding: 4px 10px;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #92400e;
+  font-weight: 500;
+}
+
+.callBtn:hover:not(:disabled) {
+  background: #fde68a;
+}
+
+.callBtn:disabled {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.roomListBtn {
+  position: absolute;
+  right: 16px;
+  font-size: 12px;
+  padding: 4px 10px;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #374151;
+  font-weight: 500;
+}
+
+.roomListBtn:hover {
+  background: #e5e7eb;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  min-width: 240px;
+}
+
+.modalTitle {
+  padding: 10px 20px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #9ca3af;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 4px;
+}
+
+.modalItem {
+  display: block;
+  padding: 12px 20px;
+  font-size: 15px;
+  color: #111827;
+  text-decoration: none;
+}
+
+.modalItem:hover {
+  background: #f9fafb;
+}
